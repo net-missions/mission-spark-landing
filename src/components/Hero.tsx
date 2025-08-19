@@ -11,7 +11,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-red-50 via-transparent to-transparent opacity-60"></div>
       
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 lg:px-8 pt-20 pb-16">
+      <div className="relative z-10 container mx-auto px-6 lg:px-8 pt-32 pb-16">
         <div className="max-w-4xl mx-auto text-center">
           {/* Badge */}
           <div className="inline-flex items-center space-x-2 bg-primary/10 border border-primary/20 rounded-full px-6 py-3 mb-8 animate-fade-in">

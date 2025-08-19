@@ -6,57 +6,76 @@ import logo from '@/assets/logo.svg';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isScrolled, setIsScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100/50">
-      <div className="container mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <div className="flex items-center space-x-3">
-            <img src={logo} alt="Net Missions Fellowship" className="h-12 w-12" />
-            <span className="text-2xl font-bold text-foreground tracking-tight">Net Missions Fellowship</span>
-          </div>
+    <header className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[95%] max-w-7xl">
+      <div className={`${
+        isScrolled 
+          ? 'bg-white/20 backdrop-blur-xl border-white/30 shadow-2xl shadow-black/20' 
+          : 'bg-white/95 backdrop-blur-lg border-gray-200/50 shadow-lg shadow-black/5'
+      } transition-all duration-300 rounded-2xl`}>
+        <div className="px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <div className="flex items-center space-x-3">
+              <img src={logo} alt="Net Missions Fellowship" className="h-8 w-8" />
+              <span className="text-lg font-bold text-foreground tracking-tight hidden sm:block">Net Missions Fellowship</span>
+              <span className="text-lg font-bold text-foreground tracking-tight sm:hidden">NMF</span>
+            </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-12">
-            <a href="#mission" className="text-gray-600 hover:text-primary transition-colors font-medium">Mission</a>
-            <a href="#impact" className="text-gray-600 hover:text-primary transition-colors font-medium">Impact</a>
-            <a href="#contact" className="text-gray-600 hover:text-primary transition-colors font-medium">Contact</a>
-          </nav>
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center space-x-8">
+              <a href="#mission" className="text-gray-600 hover:text-primary transition-colors font-medium text-sm">Mission</a>
+              <a href="#impact" className="text-gray-600 hover:text-primary transition-colors font-medium text-sm">Impact</a>
+              <a href="#contact" className="text-gray-600 hover:text-primary transition-colors font-medium text-sm">Contact</a>
+            </nav>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:block">
-            <Link to="/donate">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all">
-                Donate Now
-              </Button>
-            </Link>
-          </div>
-
-          {/* Mobile menu button */}
-          <button 
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden py-6 border-t border-gray-100/50">
-            <nav className="flex flex-col space-y-6">
-              <a href="#mission" className="text-gray-600 hover:text-primary transition-colors font-medium text-lg">Mission</a>
-              <a href="#impact" className="text-gray-600 hover:text-primary transition-colors font-medium text-lg">Impact</a>
-              <a href="#contact" className="text-gray-600 hover:text-primary transition-colors font-medium text-lg">Contact</a>
-              <Link to="/donate" className="w-full">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-semibold mt-4 w-full">
+            {/* Desktop CTA */}
+            <div className="hidden md:block">
+              <Link to="/donate">
+                <Button size="sm" className="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-full font-semibold text-sm shadow-md hover:shadow-lg transition-all">
                   Donate Now
                 </Button>
               </Link>
-            </nav>
+            </div>
+
+            {/* Mobile menu button */}
+            <button 
+              className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
-        )}
+
+          {/* Mobile Navigation */}
+          {isMenuOpen && (
+            <div className="lg:hidden py-4 border-t border-gray-100/50">
+              <nav className="flex flex-col space-y-4">
+                <a href="#mission" className="text-gray-600 hover:text-primary transition-colors font-medium">Mission</a>
+                <a href="#impact" className="text-gray-600 hover:text-primary transition-colors font-medium">Impact</a>
+                <a href="#contact" className="text-gray-600 hover:text-primary transition-colors font-medium">Contact</a>
+                <div className="pt-2 md:hidden">
+                  <Link to="/donate" className="w-full">
+                    <Button size="sm" className="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-full font-semibold w-full">
+                      Donate Now
+                    </Button>
+                  </Link>
+                </div>
+              </nav>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );
