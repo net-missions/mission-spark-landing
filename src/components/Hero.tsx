@@ -1,66 +1,51 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Heart, Globe } from 'lucide-react';
-import heroImage from '@/assets/hero-banner.jpg';
+import { ArrowRight, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import FundingProgress from '@/components/FundingProgress';
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center bg-gradient-hero overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <img 
-          src={heroImage} 
-          alt="Mission work around the world" 
-          className="w-full h-full object-cover opacity-20"
-        />
-        <div className="absolute inset-0 bg-gradient-hero opacity-80"></div>
-      </div>
-
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-white overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-red-50 via-transparent to-transparent opacity-60"></div>
+      
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-16">
-        <div className="max-w-4xl mx-auto text-center text-white">
+      <div className="relative z-10 container mx-auto px-6 lg:px-8 pt-20 pb-16">
+        <div className="max-w-4xl mx-auto text-center">
           {/* Badge */}
-          <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-2 mb-8 animate-fade-in">
-            <Globe className="h-4 w-4" />
-            <span className="text-sm font-medium">Serving Communities Worldwide</span>
+          <div className="inline-flex items-center space-x-2 bg-primary/10 border border-primary/20 rounded-full px-6 py-3 mb-8 animate-fade-in">
+            <Sparkles className="h-4 w-4 text-primary" />
+            <span className="text-sm font-semibold text-primary">Building Our Future Together</span>
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in">
-            Transforming Lives Through 
-            <span className="block text-white">Faith & Service</span>
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-8 animate-fade-in text-gray-900 leading-tight">
+            Help Us Build Our
+            <span className="block text-primary">New Church Home</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-xl sm:text-2xl text-white/90 mb-8 max-w-3xl mx-auto animate-fade-in">
-            Join us in our mission to spread hope, love, and practical support to communities in need around the globe.
+          <p className="text-xl sm:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto animate-fade-in leading-relaxed">
+            Join us in building a new sanctuary where our community can gather, worship, and grow together in faith. Your donation helps create a lasting legacy for generations.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-scale-in">
-            <Button variant="outline-white" size="lg" className="text-lg px-8 py-4">
-              <Heart className="mr-2 h-5 w-5" />
-              Donate Today
-            </Button>
-            <Button variant="ghost" size="lg" className="text-lg px-8 py-4 text-white hover:bg-white/10">
-              Learn More
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-scale-in mb-20">
+            <Link to="/donate">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-10 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all group">
+                Donate Now
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
+            <Button variant="outline" size="lg" className="px-10 py-4 rounded-full font-semibold text-lg border-2 hover:bg-gray-50">
+              View Progress
             </Button>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 mt-16 pt-16 border-t border-white/20">
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold mb-2">50+</div>
-              <div className="text-white/80">Countries Served</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold mb-2">100K+</div>
-              <div className="text-white/80">Lives Impacted</div>
-            </div>
-            <div className="text-center sm:col-span-1 col-span-2">
-              <div className="text-3xl sm:text-4xl font-bold mb-2">25</div>
-              <div className="text-white/80">Years of Service</div>
-            </div>
+          {/* Funding Progress */}
+          <div className="max-w-2xl mx-auto">
+            <FundingProgress size="lg" />
           </div>
         </div>
       </div>
