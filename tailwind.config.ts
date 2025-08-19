@@ -90,7 +90,7 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
 				'fade-in': {
 					'0%': {
 						opacity: '0',
